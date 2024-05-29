@@ -9,7 +9,9 @@ const UserHeader = () => {
     const router = useRouter();
     const handleLogout = ()=>{
         localStorage.removeItem('LinkTreeToken');
-        router.push('/login');
+        // router.push('/login');
+        if (!localStorage.getItem("LinkTreeToken"))
+            return (window.location.href = "/login");
     }
  
     const {userData, setUserData} = useContext(UserContext);

@@ -15,15 +15,7 @@ app.use(cors());
 app.use(express.json());
 const { dbConnect } = require("./config/database");
 dbConnect();
-// mongoose
-//   .connect("mongodb://127.0.0.1:27017/linktree")
-//   .then(() => {
-//     console.log(`mongodb Connected`);
-//   })
-//   .catch((err) => {
-//     console.log(err.message);
-//   });
- 
+
 app.get("/", (req, res) => {
   res.send(`Server is running on port ${port}`);
 });
@@ -32,7 +24,6 @@ app.post("/api/register", registerUser);
 app.post("/api/login",loginUser);
 app.post("/data/dashboard",dashBoardData);
 app.get("/get/:handle",getUserData);
-// app.get("/get/socials/:handle",getUserSocials);
 app.post("/save/socials", saveSocials);
 app.post("/save/profile", saveProfile);
 app.post("/load/socials",loadSocials);

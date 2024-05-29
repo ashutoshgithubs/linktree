@@ -36,6 +36,7 @@ const Apply = () => {
         if (data.status === "not found") {
           toast.error("User not found");
         }
+        if(data.status==="error") toast.error("Enter correct password");
       })
       .catch((err) => {
         console.log(err);
@@ -89,7 +90,7 @@ const Apply = () => {
           </div>
           <h4 className="text-center text-gray-500 font-semibold pt-3">
             New Here?{" "}
-            <Link className="font-bold text-red-400" href="/register">
+            <Link className="font-bold text-red-400" href="/apply">
               Register
             </Link>
           </h4>
