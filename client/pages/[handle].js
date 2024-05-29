@@ -39,10 +39,10 @@ const Handle = () => {
  
   if (!userFound) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="not-found px-3 ">
+      <div className="flex justify-center items-center h-screen border rounded-lg shadow-xl border-gray-400">
+        <div className="not-found px-3 bg-white p-8 rounded-lg shadow-2xl max-w-md ">
           <h1 className="font-bold text-lg">User Not found 🙁</h1>
-          <p>If you're looking for a page, double check the spelling.</p>
+          <p>If you're interested</p>
           Create your own
           <Link
             className="bg-indigo-600 px-2 ml-2 text-white hover:bg-indigo-400 transition-all duration-500"
