@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import UserContext from "../../context/userContext";
 import UserHeader from "../../components/UserHeader";
 import { toast } from "react-toastify";
- 
+
 const profile = () => {
   const router = useRouter();
   const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -15,18 +15,18 @@ const profile = () => {
     instagram: "",
     youtube: "",
     linkedin: "",
-    github: ""
+    github: "",
   });
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
   const [avatar, setAvatar] = useState(
     "https://cdn-icons-png.flaticon.com/64/4140/4140048.png"
   );
- 
+
   const handleSocial = (e) => {
     setSocial({
       ...social,
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
   useEffect(() => {
@@ -41,14 +41,14 @@ const profile = () => {
     fetch(`${backendURL}/save/profile`, {
       method: "POST",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
       },
       body: JSON.stringify({
         tokenMail: localStorage.getItem("LinkTreeToken"),
         name: name,
         bio: bio,
-        avatar: avatar
-      })
+        avatar: avatar,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -61,12 +61,12 @@ const profile = () => {
     fetch(`${backendURL}/save/socials`, {
       method: "POST",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
       },
       body: JSON.stringify({
         tokenMail: localStorage.getItem("LinkTreeToken"),
-        socials: social
-      })
+        socials: social,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -74,17 +74,17 @@ const profile = () => {
         toast.success("Socials saved successfully");
       });
   };
- 
+
   useEffect(() => {
     if (!localStorage.getItem("LinkTreeToken")) return router.push("/login");
     fetch(`${backendURL}/load/socials`, {
       method: "POST",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
       },
       body: JSON.stringify({
-        tokenMail: localStorage.getItem("LinkTreeToken")
-      })
+        tokenMail: localStorage.getItem("LinkTreeToken"),
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -92,7 +92,7 @@ const profile = () => {
         setSocial(data.socials);
       });
   }, []);
- 
+
   return (
     <>
       <div>
@@ -179,7 +179,6 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter Instagram ID"
-                     
                     />
                   </span>
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
@@ -191,7 +190,6 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter Twitter ID"
-                     
                     />
                   </span>
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
@@ -203,7 +201,6 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter Linkedin ID"
-                      
                     />
                   </span>
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
@@ -215,7 +212,6 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter Github ID"
-                      
                     />
                   </span>
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
@@ -227,7 +223,6 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter YouTube ID "
-                     
                     />
                   </span>
                   <input
@@ -244,5 +239,5 @@ const profile = () => {
     </>
   );
 };
- 
+
 export default profile;
