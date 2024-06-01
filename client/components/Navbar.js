@@ -5,13 +5,46 @@ import { useEffect, useState } from "react";
 const NavBar = () => {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const [token, setToken] = useState(null);
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [router.asPath]);
+
+  useEffect(() => {
+    // Function to load token from localStorage
+    const loadToken = () => {
+      if (typeof window !== "undefined") {
+        const storedToken = localStorage.getItem("LinkTreeToken");
+        setToken(storedToken);
+      }
+    };
+
+    // Load token on component mount
+    loadToken();
+
+    // Event listener to update token state on storage change
+    const handleStorageChange = () => {
+      loadToken();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+  //   console.log("Token in Navbar: ", token);
+
+  const handleLogout = () => {
+    localStorage.removeItem("LinkTreeToken");
+    // router.push('/login');
+    if (!localStorage.getItem("LinkTreeToken"))
+      return (window.location.href = "/login");
+  };
 
   return (
     <>
@@ -66,24 +99,45 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="hover:text-gray-700 transition-transform transform hover:scale-110">
-                <Link
-                  href="/apply"
-                  className="block py-2 pl-3 pr-4 rounded md:bg-transparent  md:p-0  text-gray-600"
-                >
-                  Register
-                </Link>
+                {token === null && (
+                  <Link
+                    href="/apply"
+                    className="block py-2 pl-3 pr-4 rounded md:bg-transparent  md:p-0  text-gray-600"
+                  >
+                    Register
+                  </Link>
+                )}
+                {token !== null && (
+                  <Link
+                    href="/edit/profile"
+                    className="block py-2 pl-3 pr-4 rounded md:bg-transparent  md:p-0  text-gray-600"
+                  >
+                    Profile
+                  </Link>
+                )}
               </li>
               {/* <li>
                 <Link href="/features" className="block py-2 pl-3 pr-4 rounded md:bg-transparent  md:p-0  text-gray-600 hover:text-gray-800">Features</Link>
                 </li> */}
-              <li>
-                <Link
-                  href="/login"
-                  className="block py-2 pl-3 pr-4 rounded md:bg-transparent  md:p-0  text-gray-600 hover:text-gray-800"
-                >
-                  Login
-                </Link>
+              <li className="hover:text-gray-700 transition-transform transform hover:scale-110">
+                {token === null && (
+                  <Link
+                    href="/login"
+                    className="block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 text-gray-600 hover:text-gray-800"
+                  >
+                    Login
+                  </Link>
+                )}
+                {token !== null && (
+                  <a
+                    onClick={handleLogout}
+                    className="block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 text-gray-600 hover:text-gray-800 cursor-pointer "
+                  >
+                    Logout
+                  </a>
+                )}
               </li>
+
               <li className="hover:text-gray-700 transition-transform transform hover:scale-110">
                 <Link
                   href="/dashboard"

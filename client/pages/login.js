@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { AiTwotoneMail } from "react-icons/ai";
- 
+
 const Apply = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -14,29 +14,31 @@ const Apply = () => {
   //console.log("BACKEND URL IN LOGIN", backendURL)
   const handleLogin = (e) => {
     e.preventDefault();
-   // toast("You are Logged in");
+    // toast("You are Logged in");
     //backend here
     fetch(`${backendURL}/api/login`, {
       method: "POST",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
       },
       body: JSON.stringify({
         email,
-        password
-      })
+        password,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
           toast("You are Logged in");
           localStorage.setItem("LinkTreeToken", data.token);
-          router.push("/dashboard");
+          // router.push("/dashboard");
+          if (localStorage.getItem("LinkTreeToken"))
+            return (window.location.href = "/dashboard");
         }
         if (data.status === "not found") {
           toast.error("User not found");
         }
-        if(data.status==="error") toast.error("Enter correct password");
+        if (data.status === "error") toast.error("Enter correct password");
       })
       .catch((err) => {
         console.log(err);
@@ -52,18 +54,18 @@ const Apply = () => {
         <div className="main">
           <div className="content bg-white border-2 px-4 py-8 rounded-2xl shadow-lg">
             <h1 className="text-2xl font-bold text-center">
-            You're a Top Creator! 🚀
+              You're a Top Creator! 🚀
             </h1>
             <p className="text-center">Access your Dashboard</p>
             <p className="text-center py-5 font-bold text-gray-500">
-            Start Building Your Hub Now ✨
+              Start Building Your Hub Now ✨
             </p>
             <form
               onSubmit={handleLogin}
               className="flex flex-col gap-4 text-lg mt-5"
             >
               <span className="flex flex-row shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
-              <AiTwotoneMail className="w-8 h-6 mr-2"/>
+                <AiTwotoneMail className="w-8 h-6 mr-2" />
                 <input
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -82,7 +84,7 @@ const Apply = () => {
                 required
               />
               <input
-                className="bg-white text-indigo-600 py-2 font-semibold rounded-lg cursor-pointer border border-indigo-400"
+                className="bg-white text-indigo-600 py-2 font-semibold rounded-lg cursor-pointer border border-indigo-400   transition-all duration-200 hover:scale-100"
                 type="submit"
                 value="Login"
               />
@@ -96,11 +98,9 @@ const Apply = () => {
           </h4>
           <Footer />
         </div>
-       
       </section>
-      
     </>
   );
 };
- 
+
 export default Apply;
