@@ -15,11 +15,11 @@ export default function Home() {
       <MyHead
         title="LinkRel - Your Social Hub"
         description="Welcome to LinkRel! Organize all your social links in one beautiful page."
-        image="https://caley.app/wp-content/uploads/2024/04/Logo-07.png"
+        image="https://i.ibb.co/rKYQgYLD/image-removebg-preview-1.png"
         url="https://caley.app"
       />
 
-      <main className="w-full min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-4 md:p-8 relative overflow-hidden">
+      <main className="w-full mt-6 min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-4 md:p-8 relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-20 left-10 w-64 h-64 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
         <div className="absolute top-40 right-10 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
