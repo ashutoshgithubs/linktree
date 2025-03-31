@@ -1,9 +1,9 @@
 import React from "react";
-import LinkTreeCard from "./LinkTreeCard";
+import LinkRelCard from "./LinkRelCard";
 import { AnimatePresence, motion } from "framer-motion";
- 
-const LinkTree = ({ data }) => {
-    console.log("AVATAR WALA DATA: ", data);
+
+const LinkRel = ({ data }) => {
+  console.log("AVATAR WALA DATA: ", data);
   const { name, avatar, bio, links } = data;
   return (
     <>
@@ -27,10 +27,10 @@ const LinkTree = ({ data }) => {
                 animate={{
                   opacity: 1,
                   y: 0,
-                  transition: { delay: index * 0.1 + 0.5 }
+                  transition: { delay: index * 0.1 + 0.5 },
                 }}
               >
-                <LinkTreeCard
+                <LinkRelCard
                   title={link.title}
                   url={link.url}
                   image={link.icon}
@@ -43,5 +43,5 @@ const LinkTree = ({ data }) => {
     </>
   );
 };
- 
-export default LinkTree;
+
+export default LinkRel;

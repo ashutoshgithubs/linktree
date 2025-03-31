@@ -18,7 +18,7 @@ const NavBar = () => {
   useEffect(() => {
     const loadToken = () => {
       if (typeof window !== "undefined") {
-        const storedToken = localStorage.getItem("LinkTreeToken");
+        const storedToken = localStorage.getItem("LinkRelToken");
         setToken(storedToken);
       }
     };
@@ -36,8 +36,8 @@ const NavBar = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("LinkTreeToken");
-    if (!localStorage.getItem("LinkTreeToken")) {
+    localStorage.removeItem("LinkRelToken");
+    if (!localStorage.getItem("LinkRelToken")) {
       window.location.href = "/login";
     }
   };

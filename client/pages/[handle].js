@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import LinkTree from "../components/LinkTree";
+import LinkRel from "../components/LinkRel";
 import Link from "next/link";
 import SocialTree from "../components/SocialTree";
 import ShareButton from "../components/ShareButton";
- 
+
 const Handle = () => {
   const router = useRouter();
   const [data, setData] = useState({});
   const [userFound, setUserFound] = useState(false);
- 
+
   const [social, setSocial] = useState({
     facebook: "",
     twitter: "",
     instagram: "",
     youtube: "",
     linkedin: "",
-    github: ""
+    github: "",
   });
   const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
   useEffect(() => {
@@ -36,7 +36,7 @@ const Handle = () => {
         });
     }
   }, [router.query]);
- 
+
   if (!userFound) {
     return (
       <div className="flex justify-center items-center h-screen border rounded-lg shadow-xl border-gray-400">
@@ -49,20 +49,20 @@ const Handle = () => {
             href="/apply"
           >
             {" "}
-            LinkTree
+            LinkRel
           </Link>
         </div>
       </div>
     );
   }
- 
+
   return (
     <div>
       <ShareButton />
-      <LinkTree data={data} />
+      <LinkRel data={data} />
       <SocialTree social={social} />
     </div>
   );
 };
- 
+
 export default Handle;

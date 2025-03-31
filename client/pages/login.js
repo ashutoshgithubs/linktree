@@ -30,9 +30,9 @@ const Apply = () => {
       .then((data) => {
         if (data.status === "success") {
           toast("You are Logged in");
-          localStorage.setItem("LinkTreeToken", data.token);
+          localStorage.setItem("LinkRelToken", data.token);
           // router.push("/dashboard");
-          if (localStorage.getItem("LinkTreeToken"))
+          if (localStorage.getItem("LinkRelToken"))
             return (window.location.href = "/dashboard");
         }
         if (data.status === "not found") {
@@ -48,7 +48,8 @@ const Apply = () => {
     <>
       <section
         className={
-          styles.background + " min-h-screen flex justify-center items-center mt-12"
+          styles.background +
+          " min-h-screen flex justify-center items-center mt-12"
         }
       >
         <div className="main">

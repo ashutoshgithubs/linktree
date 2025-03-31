@@ -1,47 +1,47 @@
 import UserHeader from "../../components/UserHeader";
 import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
- 
+
 const links = () => {
   const [links, setLinks] = useState([{ url: "", title: "" }]);
   const [title, setTitle] = useState("");
   const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
- 
+
   const handleLinkChange = (index, field, value) => {
     const updatedLinks = [...links];
     const linkToUpdate = { ...updatedLinks[index], [field]: value };
     updatedLinks[index] = linkToUpdate;
     setLinks(updatedLinks);
   };
- 
+
   const handleAddLink = () => {
     setLinks([...links, { url: "", title: "" }]);
   };
- 
+
   const handleRemoveLink = (index) => {
     const updatedLinks = [...links];
     updatedLinks.splice(index, 1);
     setLinks(updatedLinks);
   };
- 
+
   const saveLinks = (e) => {
     e.preventDefault();
     const linksArray = Object.values(links);
     const titlesArray = Object.values(title);
     const linksData = linksArray.map((link, index) => ({
       link,
-      title: titlesArray[index]
+      title: titlesArray[index],
     }));
- 
+
     fetch(`${backendURL}/save/links`, {
       method: "POST",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
       },
       body: JSON.stringify({
-        tokenMail: localStorage.getItem("LinkTreeToken"),
-        links: linksData
-      })
+        tokenMail: localStorage.getItem("LinkRelToken"),
+        links: linksData,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -52,17 +52,17 @@ const links = () => {
         toast.error(err.message);
       });
   };
- 
+
   useEffect(() => {
-    if (!localStorage.getItem("LinkTreeToken")) return router.push("/login");
+    if (!localStorage.getItem("LinkRelToken")) return router.push("/login");
     fetch(`${backendURL}/load/links`, {
       method: "POST",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
       },
       body: JSON.stringify({
-        tokenMail: localStorage.getItem("LinkTreeToken")
-      })
+        tokenMail: localStorage.getItem("LinkRelToken"),
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -70,7 +70,7 @@ const links = () => {
         setLinks(data.links);
       });
   }, []);
- 
+
   return (
     <>
       <div>
@@ -143,5 +143,5 @@ const links = () => {
     </>
   );
 };
- 
+
 export default links;

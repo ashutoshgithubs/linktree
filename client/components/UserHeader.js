@@ -8,9 +8,9 @@ const UserHeader = () => {
   // const {name, role, avatar, handle, links} = data;
   const router = useRouter();
   const handleLogout = () => {
-    localStorage.removeItem("LinkTreeToken");
+    localStorage.removeItem("LinkRelToken");
     // router.push('/login');
-    if (!localStorage.getItem("LinkTreeToken"))
+    if (!localStorage.getItem("LinkRelToken"))
       return (window.location.href = "/login");
   };
 
@@ -18,7 +18,7 @@ const UserHeader = () => {
   const { role, avatar, handle } = userData;
   const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
   useEffect(() => {
-    if (!localStorage.getItem("LinkTreeToken"))
+    if (!localStorage.getItem("LinkRelToken"))
       return (window.location.href = "/login");
     fetch(`${backendURL}/data/dashboard`, {
       method: "POST",
@@ -26,7 +26,7 @@ const UserHeader = () => {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        tokenMail: localStorage.getItem("LinkTreeToken"),
+        tokenMail: localStorage.getItem("LinkRelToken"),
       }),
     })
       .then((res) => res.json())
@@ -60,7 +60,7 @@ const UserHeader = () => {
             </button>
           </Link>
         </div>
-        <Link href={`https://linktree-lovat-mu.vercel.app/${handle}`}>
+        <Link href={`https://LinkRel-lovat-mu.vercel.app/${handle}`}>
           {/* <Link href={`http://localhost:3000/${handle}`}> */}
           <div className="flex flex-row">
             <div className="inline-flex mr-5 text-right items-center bg-gray-200 px-5 py-2 rounded-lg">

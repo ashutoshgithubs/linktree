@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FaInstagram } from "react-icons/fa";
- 
+
 const Apply = () => {
   const router = useRouter();
   const [handle, setHandle] = useState("");
@@ -13,7 +13,7 @@ const Apply = () => {
   const [password, setPassword] = useState("");
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
- 
+
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
   };
@@ -25,25 +25,24 @@ const Apply = () => {
     fetch(`${backendURL}/api/register`, {
       method: "POST",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
       },
       body: JSON.stringify({
         handle,
         email,
         password,
-        category
-      })
+        category,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("REGISTERED DATA:",data);
+        console.log("REGISTERED DATA:", data);
         if (data.status === "success") {
           toast.success("You are registered successfully");
-          localStorage.setItem("LinkTreeToken", data.token);
+          localStorage.setItem("LinkRelToken", data.token);
           setSubmitted(true);
           router.push("/login");
-        }
-        else{
+        } else {
           toast.error("Try different handles!");
         }
       })
@@ -55,23 +54,23 @@ const Apply = () => {
     <>
       <section
         className={
-          styles.background + " min-h-screen flex  justify-center items-center mt-24"
+          styles.background +
+          " min-h-screen flex  justify-center items-center mt-24"
         }
       >
         <div className="main flex flex-col justify-center items-center">
           <div className="content bg-white border-2 px-4 py-8 rounded-2xl shadow-lg">
             <h1 className="text-2xl font-bold text-center">
-           Join the Elite 1% of Top Creators!
+              Join the Elite 1% of Top Creators!
             </h1>
-            <p className="text-center">Create a Linktree for your brand</p>
-          
+            <p className="text-center">Create a LinkRel for your brand</p>
+
             <form
               onSubmit={handleRegister}
               className="flex flex-col gap-4 text-lg mt-5"
             >
               <span className="flex flex-row items-center shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
-                
-                <FaInstagram  className="w-6 mr-2 " />
+                <FaInstagram className="w-6 mr-2 " />
                 <input
                   value={handle}
                   onChange={(e) => setHandle(e.target.value)}
@@ -97,7 +96,7 @@ const Apply = () => {
                 placeholder="Set a password"
                 required
               />
- 
+
               <h5 className="text-sm text-center text-indigo-400">
                 Account Type:
               </h5>
@@ -146,13 +145,11 @@ const Apply = () => {
               Login
             </Link>
           </h4>
-          <Footer/>
+          <Footer />
         </div>
-  
       </section>
-    
     </>
   );
 };
- 
+
 export default Apply;

@@ -3,22 +3,22 @@ import LinkBox from "../components/LinkBox";
 import UserHeader from "../components/UserHeader";
 import { toast } from "react-toastify";
 import UserContext from "../context/userContext";
- 
+
 const dashboard = () => {
   const [data, setData] = useState({});
   const { setUserData } = useContext(UserContext);
   const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
   useEffect(() => {
-    if (!localStorage.getItem("LinkTreeToken"))
+    if (!localStorage.getItem("LinkRelToken"))
       return (window.location.href = "/login");
     fetch(`${backendURL}/data/dashboard`, {
       method: "POST",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
       },
       body: JSON.stringify({
-        tokenMail: localStorage.getItem("LinkTreeToken")
-      })
+        tokenMail: localStorage.getItem("LinkRelToken"),
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -32,13 +32,15 @@ const dashboard = () => {
         console.log(err);
       });
   }, []);
- 
+
   return (
     <>
       <div className="mt-20">
         <UserHeader />
         <main>
-            <h1 className="text-center text-2xl p-2 font-semibold text-gray-500">Statistics</h1>
+          <h1 className="text-center text-2xl p-2 font-semibold text-gray-500">
+            Statistics
+          </h1>
           <section className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
             <LinkBox
               lbTitle="Links"
@@ -71,5 +73,5 @@ const dashboard = () => {
     </>
   );
 };
- 
+
 export default dashboard;

@@ -44,7 +44,7 @@ const profile = () => {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        tokenMail: localStorage.getItem("LinkTreeToken"),
+        tokenMail: localStorage.getItem("LinkRelToken"),
         name: name,
         bio: bio,
         avatar: avatar,
@@ -64,7 +64,7 @@ const profile = () => {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        tokenMail: localStorage.getItem("LinkTreeToken"),
+        tokenMail: localStorage.getItem("LinkRelToken"),
         socials: social,
       }),
     })
@@ -76,14 +76,14 @@ const profile = () => {
   };
 
   useEffect(() => {
-    if (!localStorage.getItem("LinkTreeToken")) return router.push("/login");
+    if (!localStorage.getItem("LinkRelToken")) return router.push("/login");
     fetch(`${backendURL}/load/socials`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        tokenMail: localStorage.getItem("LinkTreeToken"),
+        tokenMail: localStorage.getItem("LinkRelToken"),
       }),
     })
       .then((res) => res.json())
@@ -167,7 +167,6 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter Facebook ID"
-                      
                     />
                   </span>
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
