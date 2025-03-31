@@ -1,5 +1,5 @@
 import React from "react";
-import LinkRelCard from "./LinkRelCard";
+import LinkTreeCard from "./LinkTreeCard";
 import { AnimatePresence, motion } from "framer-motion";
 
 const LinkRel = ({ data }) => {
@@ -30,7 +30,7 @@ const LinkRel = ({ data }) => {
                   transition: { delay: index * 0.1 + 0.5 },
                 }}
               >
-                <LinkRelCard
+                <LinkTreeCard
                   title={link.title}
                   url={link.url}
                   image={link.icon}

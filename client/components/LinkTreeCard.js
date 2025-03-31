@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const LinkRelCard = ({ title, url, image }) => {
+const LinkTreeCard = ({ title, url, image }) => {
   return (
     <>
       <span className="w-full">
@@ -23,4 +23,4 @@ const LinkRelCard = ({ title, url, image }) => {
   );
 };
 
-export default LinkRelCard;
+export default LinkTreeCard;
