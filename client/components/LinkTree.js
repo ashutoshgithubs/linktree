@@ -7,7 +7,7 @@ const LinkRel = ({ data }) => {
   const { name, avatar, bio, links } = data;
   return (
     <>
-      <section className="relative">
+      <section className="relative mt-28">
         <img
           className="w-20 absolute rounded-full left-1/2 -translate-x-1/2 mt-2"
           src={avatar}

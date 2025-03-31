@@ -104,9 +104,11 @@ const NavBar = () => {
               )}
             </li>
             <li>
-              <Link href="/dashboard" className="block py-2 text-gray-600">
-                Dashboard
-              </Link>
+              {token && (
+                <Link href="/dashboard" className="block py-2 text-gray-600">
+                  Dashboard
+                </Link>
+              )}
             </li>
           </ul>
         </div>

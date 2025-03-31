@@ -10,7 +10,7 @@ const Footer = () => {
     >
       <img
         className="hover:-rotate-45 transition-all duration-400 w-8 h-8"
-        src="/svg/LinkRel.svg"
+        src="/svg/linktree.svg"
       />
       {/* <img className='hover:-rotate-45 transition-all duration-400' src='/images/favicon.ico'/> */}
       <h5 className="text-indigo-400  font-bold hover:text-indigo-300">
