@@ -8,7 +8,7 @@ const registerUser = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
     const defaultLink = {
-      url: "https://LinkRel-lovat-mu.vercel.app",
+      url: "https://linktree-lovat-mu.vercel.app/",
       title: "LinkRel",
       icon: "https://i.ibb.co/rKYQgYLD/image-removebg-preview-1.png",
     };
