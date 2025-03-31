@@ -16,6 +16,7 @@ export default function Home() {
         title="LinkRel - Your Social Hub"
         description="Welcome to LinkRel! Organize all your social links in one beautiful page."
         image="https://i.ibb.co/rKYQgYLD/image-removebg-preview-1.png"
+        url="https://linktree-lovat-mu.vercel.app"
         url="https://LinkRel-lovat-mu.vercel.app/apply"
       />
 
