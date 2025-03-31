@@ -35,7 +35,7 @@ const dashboard = () => {
  
   return (
     <>
-      <div className="">
+      <div className="mt-20">
         <UserHeader />
         <main>
             <h1 className="text-center text-2xl p-2 font-semibold text-gray-500">Statistics</h1>

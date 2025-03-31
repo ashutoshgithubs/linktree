@@ -55,7 +55,7 @@ const Apply = () => {
     <>
       <section
         className={
-          styles.background + " min-h-screen flex  justify-center items-center"
+          styles.background + " min-h-screen flex  justify-center items-center mt-24"
         }
       >
         <div className="main flex flex-col justify-center items-center">
@@ -64,9 +64,7 @@ const Apply = () => {
            Join the Elite 1% of Top Creators!
             </h1>
             <p className="text-center">Create a Linktree for your brand</p>
-            <p className="text-center py-5 font-bold text-gray-500">
-              Start building your Hub Now!
-            </p>
+          
             <form
               onSubmit={handleRegister}
               className="flex flex-col gap-4 text-lg mt-5"

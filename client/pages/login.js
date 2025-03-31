@@ -48,7 +48,7 @@ const Apply = () => {
     <>
       <section
         className={
-          styles.background + " min-h-screen flex justify-center items-center"
+          styles.background + " min-h-screen flex justify-center items-center mt-12"
         }
       >
         <div className="main">

@@ -16,7 +16,7 @@ export default function Home() {
         title="LinkRel - Your Social Hub"
         description="Welcome to LinkRel! Organize all your social links in one beautiful page."
         image="https://i.ibb.co/rKYQgYLD/image-removebg-preview-1.png"
-        url="https://caley.app"
+        url="https://linktree-lovat-mu.vercel.app/apply"
       />
 
       <main className="w-full mt-6 min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-4 md:p-8 relative overflow-hidden">
