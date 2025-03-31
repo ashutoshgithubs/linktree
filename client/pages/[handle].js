@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import LinkRel from "../components/LinkRel";
+import LinkTree from "../components/LinkTree";
 import Link from "next/link";
 import SocialTree from "../components/SocialTree";
 import ShareButton from "../components/ShareButton";
@@ -59,7 +59,7 @@ const Handle = () => {
   return (
     <div>
       <ShareButton />
-      <LinkRel data={data} />
+      <LinkTree data={data} />
       <SocialTree social={social} />
     </div>
   );
